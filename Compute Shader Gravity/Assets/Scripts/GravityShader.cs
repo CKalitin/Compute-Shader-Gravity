@@ -47,7 +47,7 @@ public class GravityShader : MonoBehaviour {
     }
 
     private void UpdateGravity() {
-        if (gravityObjects.Count == 0) { return; }
+        if (gravityObjects.Count <= 1) { return; }
 
         for (int i = 0; i < gravityObjectsStructs.Count; i++) {
             gravityObjectsStructs[i] = new GravityObjectStruct() { position = gravityObjects[i].transform.position, mass = gravityObjects[i].Mass };
@@ -63,7 +63,7 @@ public class GravityShader : MonoBehaviour {
         gravityShader.SetBuffer(0, "gos", gravityObjectsBuffer);
         gravityShader.SetBuffer(0, "gvs", gravityVectorsBuffer);
         gravityShader.SetFloat("graviticConstant", graviticConstant);
-        gravityShader.Dispatch(0, gravityObjects.Count / 2, 2, 1);
+        gravityShader.Dispatch(0, Mathf.CeilToInt(gravityObjects.Count / 2), 2, 1);
 
         gravityVectorsBuffer.GetData(gravityVectors);
 
