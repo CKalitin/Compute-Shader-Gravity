@@ -1,0 +1,30 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+struct GravityVector {
+    float3 acceleration;
+};
+
+struct GravityObject {
+    float3 position;
+    float mass;
+};
+
+float graviticConstant;
+StructuredBuffer<GravityObject> gos;
+RWStructuredBuffer<GravityVector> gvs;
+
+[numthreads(10,2,1)]
+void CSMain (uint3 id : SV_DispatchThreadID) {
+    for (int i = 0; i < gos.Length; i++) {
+        for (int n = 0; n < gos.Length; n++) {
+            if (i == n) continue;
+
+            float3 diff = gos[i].position - gos[n].position;
+            float dist = length(diff);
+            float3 dir = -normalize(diff);
+            float3 force = dir * graviticConstant * gos[i].mass * gos[n].mass / (dist * dist);
+            gvs[i].acceleration += force;
+        }
+    }
+}
