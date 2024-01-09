@@ -13,6 +13,16 @@ public class GravityObject : MonoBehaviour {
     public Rigidbody Rb { get => rb; }
     public Rigidbody2D Rb2d { get => rb2d; }
 
+    public void AddForce(Vector3 _force) {
+        if (rb) rb.AddForce(_force, ForceMode.Force);
+        if (rb2d) rb2d.AddForce(_force, ForceMode2D.Force);
+    }
+
+    public void SetVelocity(Vector3 _velocity) {
+        if (rb) rb.velocity = _velocity;
+        if (rb2d) rb2d.velocity = _velocity;
+    }
+
     private void OnEnable() {
         mass = Mathf.PI * transform.localScale.x * transform.localScale.y;
         if (rb) rb.mass = mass;

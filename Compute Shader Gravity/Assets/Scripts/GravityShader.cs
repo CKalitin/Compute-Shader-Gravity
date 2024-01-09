@@ -71,8 +71,7 @@ public class GravityShader : MonoBehaviour {
             Vector3 acc = gravityVectors[i].acceleration;
             GravityObject go = gravityObjects[i];
 
-            if (go.Rb) { go.Rb.AddForce(acc, ForceMode.Force); }
-            else if (go.Rb2d) { go.Rb2d.AddForce(acc, ForceMode2D.Force); }
+            go.AddForce(acc);
         }
 
         gravityObjectsBuffer.Release();
