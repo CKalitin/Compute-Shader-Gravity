@@ -16,8 +16,8 @@ RWStructuredBuffer<GravityVector> gvs;
 
 [numthreads(10,2,1)]
 void CSMain (uint3 id : SV_DispatchThreadID) {
-    for (int i = 0; i < gos.Length; i++) {
-        for (int n = 0; n < gos.Length; n++) {
+    for (unsigned int i = 0; i < gos.Length; i++) {
+        for (unsigned int n = 0; n < gos.Length; n++) {
             if (i == n) continue;
 
             float3 diff = gos[i].position - gos[n].position;

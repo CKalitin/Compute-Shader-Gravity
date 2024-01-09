@@ -41,7 +41,7 @@ public class GravityShader : MonoBehaviour {
         gravityObjectsStructs.RemoveAt(index);
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         UpdateGravity();
         Time.timeScale = timeScale;
     }
