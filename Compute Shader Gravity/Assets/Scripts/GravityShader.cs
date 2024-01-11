@@ -63,7 +63,7 @@ public class GravityShader : MonoBehaviour {
         gravityShader.SetBuffer(0, "gos", gravityObjectsBuffer);
         gravityShader.SetBuffer(0, "gvs", gravityVectorsBuffer);
         gravityShader.SetFloat("graviticConstant", graviticConstant);
-        gravityShader.Dispatch(0, Mathf.CeilToInt(gravityObjects.Count / 2), 2, 1);
+        gravityShader.Dispatch(0, Mathf.CeilToInt(gravityObjects.Count / 2), 1, 1);
 
         gravityVectorsBuffer.GetData(gravityVectors);
 

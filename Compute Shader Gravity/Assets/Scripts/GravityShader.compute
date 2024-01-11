@@ -14,7 +14,7 @@ float graviticConstant;
 StructuredBuffer<GravityObject> gos;
 RWStructuredBuffer<GravityVector> gvs;
 
-[numthreads(10,2,1)]
+[numthreads(10,1,1)]
 void CSMain (uint3 id : SV_DispatchThreadID) {
     for (unsigned int i = 0; i < gos.Length; i++) {
         for (unsigned int n = 0; n < gos.Length; n++) {
